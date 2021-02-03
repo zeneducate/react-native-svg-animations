@@ -119,6 +119,7 @@ class AnimatedSVGPath extends Component {
           fill={fill}
           transform={transform}
           d={d}
+          {...this.props}
         />
       </Svg>
     );
