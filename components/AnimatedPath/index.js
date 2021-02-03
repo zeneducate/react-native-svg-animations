@@ -54,7 +54,7 @@ class AnimatedSvgPaths extends Component {
   animate = () => {
     const {
       delay,
-      loopDelay
+      loopDelay,
       duration,
       loop,
       easing,
