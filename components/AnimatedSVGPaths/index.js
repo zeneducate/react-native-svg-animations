@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import Svg from "react-native-svg";
+import Svg, { Defs, ClipPath } from "react-native-svg";
 import { Dimensions } from "react-native";
 
 import Path from "../AnimatedPath";
