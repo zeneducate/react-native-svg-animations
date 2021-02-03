@@ -15,6 +15,7 @@ class AnimatedSVGPaths extends Component {
     duration: PropTypes.number,
     height: PropTypes.number,
     delay: PropTypes.number,
+    loopDelay: PropTypes.number,
     width: PropTypes.number,
     scale: PropTypes.number,
     fill: PropTypes.string,
@@ -28,6 +29,7 @@ class AnimatedSVGPaths extends Component {
     strokeWidth: 1,
     duration: 1000,
     delay: 1000,
+    loopDelay: 0,
     fill: "none",
     scale: 1,
     height,
@@ -51,6 +53,7 @@ class AnimatedSVGPaths extends Component {
       strokeWidth,
       duration,
       delay,
+      loopDelay,
       loop,
       rewind,
     } = this.props;
@@ -70,6 +73,7 @@ class AnimatedSVGPaths extends Component {
           strokeColor={strokeColor}
           duration={duration}
           delay={delay}
+          loopDelay={loopDelay}
           scale={scale}
           fill={fill}
           key={index}
