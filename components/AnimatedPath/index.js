@@ -16,6 +16,7 @@ class AnimatedSvgPaths extends Component {
     duration: PropTypes.number,
     height: PropTypes.number,
     delay: PropTypes.number,
+    loopDelay: PropTypes.number,
     width: PropTypes.number,
     scale: PropTypes.number,
     loop: PropTypes.bool,
@@ -31,6 +32,7 @@ class AnimatedSvgPaths extends Component {
     easing: Easing.easeInOut,
     duration: 1000,
     delay: 1000,
+    loopDelay: 0,
     fill: "none",
     scale: 1,
     height,
@@ -52,6 +54,7 @@ class AnimatedSvgPaths extends Component {
   animate = () => {
     const {
       delay,
+      loopDelay
       duration,
       loop,
       easing,
@@ -68,6 +71,7 @@ class AnimatedSvgPaths extends Component {
           useNativeDriver: true,
           easing: easing,
         }),
+        Animated.delay(loopDelay),
       ],
       rewind
         ? [
@@ -108,11 +112,12 @@ class AnimatedSvgPaths extends Component {
         strokeDashoffset={this.strokeDashoffset}
         strokeWidth={strokeWidth}
         strokeLinecap={strokeLinecap}
-        stroke={strokeColor}
+      stroke={strokeColor}
         scale={scale}
         fill={fill}
         transform={transform}
         d={d}
+        {...this.props}
       />
     );
   }
