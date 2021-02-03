@@ -9,6 +9,7 @@ const { height, width } = Dimensions.get("window");
 class AnimatedSVGPaths extends Component {
   static propTypes = {
     ds: PropTypes.arrayOf(PropTypes.string).isRequired,
+    clipDs: PropTypes.arrayOf(PropTypes.string),
     strokeColor: PropTypes.string,
     strokeWidth: PropTypes.number,
     duration: PropTypes.number,
@@ -22,6 +23,7 @@ class AnimatedSVGPaths extends Component {
   };
 
   static defaultProps = {
+    clipDs: [],
     strokeColor: "black",
     strokeWidth: 1,
     duration: 1000,
@@ -40,6 +42,7 @@ class AnimatedSVGPaths extends Component {
   render() {
     const {
       ds,
+      clipDs,
       fill,
       scale,
       width,
@@ -51,6 +54,14 @@ class AnimatedSVGPaths extends Component {
       loop,
       rewind,
     } = this.props;
+    
+    const svgDefs = clipDs.map((d, index) => {
+      return (
+        <ClipPath key={index} id={`clip${index}`}>
+          <Path d={d} />
+        </ClipPath>
+      );
+    });
 
     const svgPaths = ds.map((d, index) => {
       return (
@@ -65,12 +76,14 @@ class AnimatedSVGPaths extends Component {
           loop={loop}
           rewind={rewind}
           d={d}
+          clipPath={clipDs.length ? `url(#clip${index})` : null}
         />
       );
     });
 
     return (
-      <Svg height={height * scale + 5} width={width * scale + 5}>
+      <Svg height={height * scale + 5} width={width * scale + 5} {...this.props}>
+        {clipDs.length ? <Defs>{svgDefs}</Defs> : null}
         {svgPaths}
       </Svg>
     );
